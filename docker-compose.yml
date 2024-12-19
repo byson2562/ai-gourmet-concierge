@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - "3000:3000" # ホストの3000番ポートをコンテナの3000番ポートにマッピング
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY} # 環境変数を渡す
+    volumes:
+      - .:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
